@@ -13,31 +13,43 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class AppConfig {
+    // Inject the UserRepository depedency to interact with user data in the databse
     private final UserRepository userRepository;
 
     public AppConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    // Loads user details by username; throws UsernameNotFoundException if not found
     @Bean
-    UserDetailsService userDetailsService(){
-        return username -> userRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("User not found"));
+    UserDetailsService userDetailsService() {
+        return username -> userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    // Configures BCryptPasswordEncoder as the password encoder for secure password
+    // hashing
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
-        return  new BCryptPasswordEncoder();
+    BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
+    // Configures the AuthenticationManager bean using the provided
+    // AuthenticationConfiguration,allowing for management of authentication
+    // processes.
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    // Configures and provides and AuthenticationProvider bean using
+    // DaoAuthenticationProvider, which delegates to userDetailsService for user
+    // details and passwordEncoder for password validation
     @Bean
-    AuthenticationProvider authenticationProvider(){
+    AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
+        // Sets the custom UserDetailService and password encoder for authentication
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
 

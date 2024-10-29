@@ -16,8 +16,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleSecurityException(Exception exception) {
         ProblemDetail errorDetails = null;
-
-        // TODO send this stack trace to an observability tool
         exception.printStackTrace();
 
         if (exception instanceof BadCredentialsException) {
@@ -46,13 +44,6 @@ public class GlobalExceptionHandler {
             errorDetails = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
             errorDetails.setProperty("description", "The JWT token has expired");
         }
-
-        if (exception == null) {
-            errorDetails = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(500), exception.getMessage());
-            errorDetails.setProperty("description", "Unknown internal server error");
-        }
         return errorDetails;
-
-
     }
 }
