@@ -1,19 +1,44 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment= "page_head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar</title>
+    <title>タカコー求人サイト</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
-<div class="container-fluid">
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <form class="d-flex mr-auto">
-                <a class="btn btn-danger p-2" href="/login">Login</a>
-                <a class="btn btn-danger p-2 ms-4" href="/signup">Signup</a>
-
+<div class="container-fluid " th:fragment= "page_navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <a class="navbar-brand" href="/">タカコー求人サイト</a>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link fw-bold" href="/">TOP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/recruit">求人情報</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/about">ITキャリアとは</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/event">イベント情報</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/content">ニュース・コラム</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/interview">インタビュー</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="/company">企業様向け</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-danger p-2  ms-4" href="/signup">会員登録する</a>
+                <a class="btn btn-danger p-2 ms-4" href="/login">ログインする</a>
             </form>
         </div>
     </nav>

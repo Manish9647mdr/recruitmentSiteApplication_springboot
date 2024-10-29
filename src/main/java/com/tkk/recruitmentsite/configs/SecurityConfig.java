@@ -39,7 +39,8 @@ public class SecurityConfig {
                 // Configures URL authroization
                 .authorizeHttpRequests(auth -> auth
                         // Allows unauthenticated access to specified endpoints
-                        .requestMatchers("/auth/**", "/", "/signup", "/login").permitAll()
+                        .requestMatchers("/auth/**", "/**", "/signup", "/login").permitAll()
+                        .requestMatchers("/styles.css").permitAll()
                         // Requires authentication for all other requsts
                         .anyRequest().authenticated())
                 // Configures session management

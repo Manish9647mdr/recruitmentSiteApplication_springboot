@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns="http://www.thymeleaf.org">
     <head thth:replace= "~{index :: page_head }">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" th:href="@{/styles.css}" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <nav th:replace= "~{index :: page_navbar }"></nav>
-        this is the recruit Page 
+        <p class="text-center fs-5">This is the about page </p>
     </body>
 </html>

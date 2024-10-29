@@ -22,4 +22,24 @@ public class HomeController {
     public String showLoginPage() {
         return "login";
     }
+
+    @GetMapping("/recruit")
+    public String recruitPage() {
+        return "pages/recruit";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "pages/about";
+    }
+
+    @GetMapping("/event")
+    public String eventPage() {
+        return "pages/event";
+    }
+
+    @GetMapping("/content")
+    public String contentPage() {
+        return "pages/content";
+    }
 }
